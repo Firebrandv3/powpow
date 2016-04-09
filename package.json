@@ -1,0 +1,47 @@
+{
+  "name": "powpow",
+  "version": "0.0.0",
+  "description": "Multiplayer Shooter game based on Node and WebSockets",
+  "main": "src/server/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:client": "jshint --reporter node_modules/jshint-stylish-ex/stylish.js src/client/js/*.js src/client/js/**/*.js || true",
+    "lint:server": "jshint --reporter node_modules/jshint-stylish-ex/stylish.js src/server/js/*.js src/server/js/**/*.js || true",
+    "build:scss": "node-sass --output-style compressed src/client/scss/main.scss src/client/build/main.css",
+    "build:js": "npm run lint:client && browserify src/client/js/main.js | uglifyjs -mc > src/client/build/main.js",
+    "build:all": "npm run build:js && npm run build:scss",
+    "watch:js": "nodemon -e js -w src/client/js -x 'npm run build:js'",
+    "watch:scss": "nodemon -e scss -w src/client/scss -x 'npm run build:scss'",
+    "watch": "npm run watch:js & npm run watch:scss",
+    "demon": "nodemon src/server/js/index.js",
+    "demon:dev": "nodemon --debug src/server/js/index.js -x 'npm run lint:server'"
+  },
+  "keywords": [
+    "shooter",
+    "game",
+    "multiplayer",
+    "websockets"
+  ],
+  "engines": {
+    "node": ">=5.10.1"
+  },
+  "author": "@3rfan",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish-ex": "^0.2.0",
+    "nodemon": "^1.9.1",
+    "uglify-js": "^2.6.2"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "socketio": "^1.0.0"
+  },
+  "jshintConfig": {
+    "globals": {
+      "$": false,
+      "_": false
+    }
+  }
+}
