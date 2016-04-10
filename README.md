@@ -20,13 +20,13 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
     watch:js                auto lint and build all js files on change
     watch:scss              auto build all scss files on change
     watch                   watch js and scss files
-    demon                   run the node app in production environment
-    demon:dev               run the node app in develop environment
+    start                   run the node app in production environment
+    demon                   start the app with nodemon in develop environment
 ```
 
 
 ## Notes
- - Check out the node-config package 
+ -  forward traffic on port 80 to 3000 
 
 
 ## Todos
