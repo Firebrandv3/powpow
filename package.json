@@ -4,16 +4,8 @@
   "description": "Multiplayer Shooter game based on Node and WebSockets",
   "main": "src/server/js/index.js",
   "scripts": {
-    "lint:client": "jshint --reporter node_modules/jshint-stylish-ex/stylish.js src/client/js/*.js src/client/js/**/*.js || true",
-    "lint:server": "jshint --reporter node_modules/jshint-stylish-ex/stylish.js src/server/js/*.js src/server/js/**/*.js || true",
-    "build:scss": "node-sass --output-style compressed src/client/scss/main.scss src/client/build/main.css",
-    "build:js": "npm run lint:client && browserify src/client/js/main.js | uglifyjs -mc > src/client/build/main.js",
-    "build:all": "npm run build:js && npm run build:scss",
-    "watch:js": "nodemon -e js -w src/client/js -x 'npm run build:js'",
-    "watch:scss": "nodemon -e scss -w src/client/scss -x 'npm run build:scss'",
-    "watch": "npm run watch:js & npm run watch:scss",
     "start": "NODE_ENV=production && node src/server/js/index.js",
-    "demon": "NODE_ENV=develop && nodemon --debug src/server/js/index.js & nodemon -w src/server/js -x 'npm run lint:server'"
+    "start:dev": "NODE_ENV=develop && nodemon --ignore node_modules --ignore src/client src/server/js/index.js"
   },
   "keywords": [
     "shooter",
@@ -28,16 +20,22 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
     "config": "^1.20.1",
-    "jshint": "^2.9.1",
-    "jshint-stylish-ex": "^0.2.0",
-    "nodemon": "^1.9.1",
-    "uglify-js": "^2.6.2"
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.1.0",
+    "nodemon": "^1.9.1"
   },
   "dependencies": {
     "express": "^4.13.4",
+    "jquery": "^2.2.3",
     "phaser": "^2.4.6",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "underscore": "^1.8.3"
   },
   "jshintConfig": {
     "globals": {

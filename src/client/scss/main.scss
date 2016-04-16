@@ -1,1 +1,13 @@
 @import "normalize.scss";
+@import "util.scss";
+@import "navbar.scss";
+
+*,
+::before,
+::after {
+    box-sizing: border-box;    
+}
+
+body {
+    color: blue;
+}

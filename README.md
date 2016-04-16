@@ -12,28 +12,31 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
 ## NPM Commands
 
 ```bash          
-    lint:client             linting all client side js files using jshint
-    lint:server             linting all server side js files using jshint
-    build:scss              compile all scss files inside the client folder
-    build:js                lint and concatenate all client side js files 
-    build:all               build js and scss files
-    watch:js                auto lint and build all js files on change
-    watch:scss              auto build all scss files on change
-    watch                   watch js and scss files
     start                   run the node app in production environment
-    demon                   start the app with nodemon in develop environment
+    start:dev               start the app with nodemon in develop environment
 ```
 
 
+## Grunt Commands
+
+```bash          
+    grunt                   builds all files and starts the watch task
+    grunt build             builds all files
+```
+
 ## Notes
- -  forward traffic on port 80 to 3000 
+ -  forward traffic on port 80 to 3000 (nginx?)
+ -  configure systemd or use 'forever' package
+ -  install iterm2
+ -  remove phaser from index.html and add it to build process
+ -  add onleave event 
 
 
 ## Todos
- [] Setup the http server
- [] Create the base frontend interface
+ [x] Setup the http server
+ [x] Create the base frontend interface
  [] Create base game world including a simple tilemap
- [] Add a moveable camera to the game world
+ [x] Add a moveable camera to the game world
  [] Create a simple player entity and add it to the game world
  [] The player should be able to run and jump
  [] Create an item entity for later use
