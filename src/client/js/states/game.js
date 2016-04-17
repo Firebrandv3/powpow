@@ -65,11 +65,15 @@ Game.prototype.update = function() {
     // demo code
     if (this.cursors.left.isDown)
     {
-        this.player.sprite.x += 8;
+        this.player.sprite.x -= 2;
+        this.player.sprite.animations.play('left');
     }
     else if (this.cursors.right.isDown)
     {
-        this.player.sprite.x -= 8;
+        this.player.sprite.x += 2;
+        this.player.sprite.animations.play('right');
+    } else {
+        this.player.sprite.frame = 0;
     }
 
     if (this.cursors.up.isDown)

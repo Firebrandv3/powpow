@@ -28,8 +28,8 @@ Character.prototype.createSprite = function() {
 
 Character.prototype.addAnimations = function() {
     this.sprite.animations.add('idle', [1], 1, false);
-    this.sprite.animations.add('left', [1, 2, 3, 4, 5, 6, 7], 10, true);
-    // this.sprite.animations.add('right', [5, 6, 7, 8], 10, true);
+    this.sprite.animations.add('right', [0, 1, 2], 10);
+    this.sprite.animations.add('left', [3, 4, 5], 10);
 };
 
 module.exports = Character;

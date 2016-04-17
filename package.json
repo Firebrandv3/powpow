@@ -40,7 +40,8 @@
   "jshintConfig": {
     "globals": {
       "$": false,
-      "_": false
+      "_": false,
+      "require": false
     }
   }
 }

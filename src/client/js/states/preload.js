@@ -9,7 +9,7 @@ Preload.prototype.preload = function() {
 
 Preload.prototype.loadAssets = function() {
     this.load.image('grid', 'game-assets/grid.jpg');
-    this.load.spritesheet('character', 'game-assets/sprites/character.png', 64, 64, 20);
+    this.load.spritesheet('character', 'game-assets/sprites/character.png', 100, 140, 6);
 };
 
 Preload.prototype.onLoadCompleteHandler = function() {
