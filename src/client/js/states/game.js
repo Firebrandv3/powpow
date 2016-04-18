@@ -1,12 +1,12 @@
 'use strict';
 
-var Character = require('../entities/character');
+var Player = require('../entities/player');
 
 var WORLD_ASPECT_RATIO = 4 / 3;
 var WORLD_WIDTH = 2500;
 var WORLD_HEIGHT = WORLD_WIDTH / WORLD_ASPECT_RATIO;
 
-var PHYSICS_GRAVITY = 200;
+var PHYSICS_GRAVITY = 1200;
 
 function Game() {}
 
@@ -19,11 +19,8 @@ Game.prototype.create = function(game) {
     this.initWorld();
     this.initPhysics();
 
-    this.player = new Character(this.game);
-
+    this.player = new Player(this.game);
     this.game.camera.follow(this.player.sprite);
-
-    this.cursors = game.input.keyboard.createCursorKeys();
 
     this.bindDOMEvents();
 };
@@ -61,29 +58,7 @@ Game.prototype.update = function() {
     this.game.debug.text('fps: '+ this.game.time.fps || '--', 32, 140);
 
     this.gridTileSprite.tilePosition.set(-this.game.camera.x, -this.game.camera.y);
-
-    // demo code
-    if (this.cursors.left.isDown)
-    {
-        this.player.sprite.x -= 2;
-        this.player.sprite.animations.play('left');
-    }
-    else if (this.cursors.right.isDown)
-    {
-        this.player.sprite.x += 2;
-        this.player.sprite.animations.play('right');
-    } else {
-        this.player.sprite.frame = 0;
-    }
-
-    if (this.cursors.up.isDown)
-    {
-        this.player.sprite.y += 8;
-    }
-    else if (this.cursors.down.isDown)
-    {
-        this.player.sprite.y -= 8;
-    }
+    this.player.update();
 };
 
 module.exports = Game;
