@@ -35,13 +35,14 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
 ## Todos
  [x] Setup the http server
  [x] Create the base frontend interface
- [] Create base game world including a simple tilemap
- [x] Add a moveable camera to the game world
- [] Create a game logo
- [x] Create a simple player entity and add it to the game world
- [] The player should be able to run and jump
  [] Create an item entity for later use
  [] The player should be able to hold and shoot a gun (or other items later)
+ [x] Create base game world including a simple tilemap
+ [x] Add a moveable camera to the game world
+ [x] Create a simple player entity and add it to the game world
+ [x] The player should be able to run and jump
+ [] Add aim cursor
+ [] Create a game logo
  [] Create a simple login dialog
  [] Setup the websocket server
  [] The server should be able to manage multiple players / connections

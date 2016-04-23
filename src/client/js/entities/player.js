@@ -2,57 +2,60 @@
 
 var Character = require('./character');
 
-function Player(game, x, y) {
+function Player(game) {
     this.game = game;
 
-    this.sprite = this.createSprite();
+    this.name = null;
+
+    this.character = this.createCharacter();
 
     this.controlKeys = this.controlsMapping();
 }
 
-Player.prototype.createSprite = function() {
-    var sprite = new Character(
+Player.prototype.createCharacter = function() {
+    var character = new Character(
         this.game, 
         this.game.world.randomX, 
-        this.game.world.height
+        this.game.world.height / 2
     );
 
-    sprite.anchor.set(0.5);
-    this.game.physics.enable(sprite);
-    sprite.body.collideWorldBounds = true;
+    this.game.physics.enable(character);
+    character.body.collideWorldBounds = true;
 
-    // add sprite to world
-    this.game.add.existing(sprite);
+    character.weapon = character.createWeapon();
 
-    return sprite;
+    // add character sprite to world
+    this.game.add.existing(character);
+
+    character.addChild(character.weapon);
+
+    return character;
 };
 
 Player.prototype.update = function() {
-    if (!this.sprite) return;
+    if (!this.character) return;
+
+    // set aiming side direction
+    this.character.isAimingLeft = this.isAimingLeft();
 
     // movement
     if (this.controlKeys.left.isDown) {
-        this.sprite.callAction('moveLeft');
+        this.character.callAction('moveLeft');
     } else if (this.controlKeys.right.isDown) {
-        this.sprite.callAction('moveRight');
+        this.character.callAction('moveRight');
     } 
 
-    // set looking direction
-    if (
-        !this.sprite.body.onFloor() || 
-        !this.controlKeys.right.isDown && 
-        !this.controlKeys.left.isDown
-    ) {
-        if (this.sprite.isLookingLeft()) {
-            this.sprite.lookLeft();
-        } else {
-            this.sprite.lookRight();
-        }
+    // aiming direction
+    this.character.setAimDirection(this.game.physics.arcade.angleToPointer(this.character));
+
+    // shooting
+    if (this.game.input.activePointer.isDown) {
+        this.character.callAction('shoot', this.game.physics.arcade.angleToPointer(this.character));
     }
 
     // jumping
     if (this.controlKeys.jump.isDown) {
-        this.sprite.callAction('jump');
+        this.character.callAction('jump');
     }
 };
 
@@ -66,6 +69,10 @@ Player.prototype.controlsMapping = function() {
 
         jump: this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     };
+};
+
+Player.prototype.isAimingLeft = function() {
+    return this.game.input.activePointer.x < this.character.x + this.character.width / 2 - this.game.camera.x;
 };
 
 module.exports = Player;
