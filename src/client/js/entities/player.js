@@ -19,6 +19,8 @@ Player.prototype.createCharacter = function() {
         this.game.world.height / 2
     );
 
+    character.anchor.setTo(0.5);
+
     this.game.physics.enable(character);
     character.body.collideWorldBounds = true;
 
@@ -33,7 +35,12 @@ Player.prototype.createCharacter = function() {
 };
 
 Player.prototype.update = function() {
+    var aimDirection;
+
     if (!this.character) return;
+
+    // aim direction in degree
+    aimDirection = this.game.physics.arcade.angleToPointer(this.character);
 
     // set aiming side direction
     this.character.isAimingLeft = this.isAimingLeft();
@@ -43,14 +50,16 @@ Player.prototype.update = function() {
         this.character.callAction('moveLeft');
     } else if (this.controlKeys.right.isDown) {
         this.character.callAction('moveRight');
-    } 
+    } else {
+        this.character.callAction('stopMove');
+    }
 
     // aiming direction
-    this.character.setAimDirection(this.game.physics.arcade.angleToPointer(this.character));
+    this.character.setAimDirection(aimDirection);
 
     // shooting
     if (this.game.input.activePointer.isDown) {
-        this.character.callAction('shoot', this.game.physics.arcade.angleToPointer(this.character));
+        this.character.callAction('shoot', aimDirection);
     }
 
     // jumping
@@ -72,7 +81,7 @@ Player.prototype.controlsMapping = function() {
 };
 
 Player.prototype.isAimingLeft = function() {
-    return this.game.input.activePointer.x < this.character.x + this.character.width / 2 - this.game.camera.x;
+    return this.game.input.activePointer.x < this.character.x - this.game.camera.x;
 };
 
 module.exports = Player;

@@ -5,7 +5,7 @@
 function Weapon(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'weapon', 0);
 
-    this.projectileManager = new ProjectileManager(game);
+    this.projectileManager = new ProjectileManager(game, this.width * 2);
 }
 
 Weapon.prototype = Object.create(Phaser.Sprite.prototype);
@@ -16,11 +16,15 @@ Weapon.prototype.shoot = function(angle) {
 };
 
 // Projectile Group
-function ProjectileManager(game) {
+function ProjectileManager(game, weaponWidth, weaponHeight) {
     Phaser.Group.call(this, game, game.world, 'projectileManager', false, true, Phaser.Physics.ARCADE);
 
+    this.weaponWidth = weaponWidth;
+
     this.nextFire = 0;
+
     this.bulletSpeed = 1000;
+
     this.fireRate = 100;
 
     // 64 bullets
@@ -33,16 +37,16 @@ ProjectileManager.prototype = Object.create(Phaser.Group.prototype);
 ProjectileManager.prototype.constructor = ProjectileManager;
 
 ProjectileManager.prototype.fire = function (source, angle) {
+    var x, y;
 
     if (this.game.time.time < this.nextFire) return;
 
-    var x = source.x + 10;
-    var y = source.y + 10;
+    x = source.x + this.weaponWidth * Math.cos(angle);
+    y = source.y + this.weaponWidth * Math.sin(angle);
 
     this.getFirstExists(false).fire(x, y, angle, this.bulletSpeed, 0, 0);
 
     this.nextFire = this.game.time.time + this.fireRate;
-
 };
 
 // Projectile Entity
@@ -71,8 +75,7 @@ Projectile.prototype.fire = function(x, y, angle, speed, gx, gy) {
     this.game.physics.arcade.moveToPointer(this, speed);
     this.body.allowGravity = false;
 
-    this.angle = angle;
-
+    this.rotation = angle;
 };
 
 Projectile.prototype.update = function() {

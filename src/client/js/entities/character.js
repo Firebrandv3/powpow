@@ -2,7 +2,7 @@
 
 var Weapon = require('./weapon');
 
-var MOVEMENT_SPEED = 4;
+var MOVEMENT_SPEED = 200;
 var JUMP_SPEED = -800;
 
 // view representation of the character without any businesscode
@@ -31,19 +31,17 @@ Character.prototype.addAnimations = function() {
 
 Character.prototype.createWeapon = function() {
     // var weapon = new Weapon(this.game, this.width / 2, this.height / 2);
-
-    // weapon.anchor.setTo(-0.5, 0.5);
     
-    var weapon = new Weapon(this.game, this.width / 2, 0);
+    var weapon = new Weapon(this.game, 0, 0);
 
-    weapon.anchor.setTo(0.5, 0.5);
+    weapon.anchor.setTo(-0.7, 0.5);
 
     return weapon;
 };
 
 Character.prototype.actionsMapping = {
     moveLeft: function() {
-        this.x -= MOVEMENT_SPEED;
+        this.body.velocity.x = -MOVEMENT_SPEED;
             
         if (!this.body.onFloor()) return;
 
@@ -55,7 +53,7 @@ Character.prototype.actionsMapping = {
     },
 
     moveRight: function() {
-        this.x += MOVEMENT_SPEED;
+        this.body.velocity.x = MOVEMENT_SPEED;
 
         if (!this.body.onFloor()) return;
         
@@ -64,6 +62,10 @@ Character.prototype.actionsMapping = {
         } else {
             this.movingAnimation = this.animations.play('rightForward');
         }
+    },
+
+    stopMove: function() {
+        this.body.velocity.x = 0;
     },
 
     jump: function() {
@@ -78,7 +80,7 @@ Character.prototype.actionsMapping = {
 };
 
 Character.prototype.callAction = function(action) {
-    var args = Array.prototype.splice.call(arguments, 0, 1);
+    var args = Array.prototype.splice.call(arguments, 1, 1);
 
     if (this.actionsMapping[action]) {
         this.actionsMapping[action].apply(this, args);

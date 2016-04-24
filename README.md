@@ -36,7 +36,7 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [x] Setup the http server
  [x] Create the base frontend interface
  [] Create an item entity for later use
- [] The player should be able to hold and shoot a gun (or other items later)
+ [] The player should be able to hold and shoot a gun (or other items later
  [x] Create base game world including a simple tilemap
  [x] Add a moveable camera to the game world
  [x] Create a simple player entity and add it to the game world
@@ -51,4 +51,6 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [] setup a postgres database connections using an orm
  [] Add passportjs to the app and provide an oauth login
  [] Make logged in players be able to get trophies and save the current trophy into the database
+ [] Projectiles should collide with other players and the ground
+ [] Create a user page
  
