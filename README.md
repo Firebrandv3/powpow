@@ -42,8 +42,8 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [x] Create a simple player entity and add it to the game world
  [x] The player should be able to run and jump
  [] Add aim cursor
- [] Create a game logo
- [] Create a simple login dialog
+ [x] Create a simple login dialog
+ [] Projectiles should collide with other players and the ground
  [] Setup the websocket server
  [] The server should be able to manage multiple players / connections
  [] One players action should be visible on other connected clients
@@ -51,6 +51,6 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [] setup a postgres database connections using an orm
  [] Add passportjs to the app and provide an oauth login
  [] Make logged in players be able to get trophies and save the current trophy into the database
- [] Projectiles should collide with other players and the ground
  [] Create a user page
+ [] Create a highscore page
  

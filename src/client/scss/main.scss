@@ -1,13 +1,34 @@
 @import "normalize.scss";
 @import "util.scss";
+@import "btn.scss";
+@import "form.scss";
 @import "navbar.scss";
+@import "login.scss";
 
 *,
 ::before,
 ::after {
-    box-sizing: border-box;    
+    box-sizing: border-box;
+}
+
+:focus {
+    outline: 0;
 }
 
 body {
-    color: blue;
+    color: #111;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0 0 15px;
+}
+
+
+.game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
