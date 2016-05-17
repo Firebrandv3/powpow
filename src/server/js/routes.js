@@ -24,6 +24,10 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/imprint', function(req, res) {
+        res.render('simple.hbs', { title: 'Imprint' });
+    });
+
     app.get('/login', function(req, res) {
         if (req.isAuthenticated()) {
             res.redirect('/me');
@@ -83,6 +87,6 @@ module.exports = function(app, passport) {
 
     // 404 handler
     app.use(function(req, res) {
-        res.render('404.hbs', { title: 'Not found' });
+        res.render('404.hbs', { title: '404 Not found!' });
     });
 };

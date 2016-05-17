@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-banner');
     
     var pathsConfig = {
         client: 'src/client',
@@ -66,6 +67,29 @@ module.exports = function(grunt) {
                 '<%= paths.server %>/js/**/*.js'
             ]
         },
+
+        usebanner: {
+            taskName: {
+                options: {
+                    position: 'top',
+                    banner: [
+                        '/**',
+                        '* Studiengang: MultimediaTechnology / FHS',
+                        '* Zweck: Web (Basisqualifikationen)',
+                        '* Autor: Erfan Ebrahimnia',
+                        '*/'
+                    ].join('\n'),
+                    linebreak: true
+                },
+                files: {
+                    src: [ 
+                        '<%= paths.client %>/js/**/*.js', 
+                        '<%= paths.server %>/js/**/*.js' ,
+                        '<%= paths.client %>/scss/**/*.scss', 
+                    ]
+                }
+            }
+        }
 
         watch: {
             sass: {

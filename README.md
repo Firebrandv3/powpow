@@ -70,7 +70,7 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [] Upload the game on heroku and test it
  [] If there are any huge problems fix them and make the game playable 
  [] Create the about page
- [] Fix revive inventory bug
+ [x] Fix revive inventory bug
 
  [] Add soundfx for walking, jetpack, shooting, explosion, item pickup, no ammo
  [x] Add controls guide to login dialog
