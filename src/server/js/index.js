@@ -43,6 +43,6 @@ app.set('views', getPath('views'));
 
 require('./routes')(app, passport);
 
-http.listen(config.get('http.port'));
+http.listen(process.env.PORT || config.get('http.port'));
 
-console.log('Server listening on port: ', config.get('http.port'));
+console.log('Server listening on port: ', process.env.PORT || config.get('http.port'));
