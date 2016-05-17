@@ -23,6 +23,7 @@
     "browserify": "^13.0.0",
     "browserify-shim": "^3.8.12",
     "config": "^1.20.1",
+    "config-browserify": "^1.0.5",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-jshint": "^1.0.0",
@@ -32,10 +33,19 @@
     "nodemon": "^1.9.1"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
     "jquery": "^2.2.3",
+    "moment": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
+    "pg": "^4.5.5",
+    "pg-hstore": "^2.3.2",
     "phaser": "^2.4.6",
+    "sequelize": "^3.23.2",
+    "sequelize-connect": "^1.2.2",
     "socketio": "^1.0.0",
     "underscore": "^1.8.3"
   },
@@ -43,7 +53,8 @@
     "globals": {
       "$": false,
       "_": false,
-      "require": false
+      "require": false,
+      "Phaser": false
     }
   }
 }

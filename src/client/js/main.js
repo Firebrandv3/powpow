@@ -1,14 +1,20 @@
 'use strict';
 
-var Initializer = require('./initializer');
+window.App = window.App || {
+    User: {},
+
+    UI: {},
+
+    Game: {},
+
+    socket: null
+};
+
 var UI = require('./ui');
+App.Game.Initializer = require('./initializer');
 
 window.addEventListener('load', function() {
-    new Initializer({
-        el: 'game-container'
-    });
-
-    new UI.Navbar({
+    App.UI.Navbar = new UI.Navbar({
         container: '#navbar-container',
         navbar: '#navbar',
         trigger: '#navbar-trigger'

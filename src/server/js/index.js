@@ -1,34 +1,42 @@
 var path = require('path');
 var express = require('express');
-var config = require('config');
 var app = express();
+var http = require('http').Server(app);
+var socket = require('./socket').listen(http);
+var config = require('config');
 var exphbs = require('express-handlebars');
+var passport = require('passport');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var dbSetup = require('./db-setup');
+var hbsHelpers = require('./hbs-helpers');
+var passportService = require('./passport-service')(passport);
+
 var rootPath = path.join(__dirname, config.get('http.rootPath'));
+
+// set the root path to our client folder and start the http server
+app.use(express.static(rootPath));
+app.use(cookieParser());
+app.use(session({ secret: config.get('auth.session.secret') }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 function getPath(subPath) {
     return path.join(rootPath, subPath);
 }
 
-// set the root path to our client folder and start the http server
-app.use(express.static(rootPath));
-
 app.engine('.hbs', exphbs({ 
     defaultLayout: getPath('master'), 
     partialsDir: getPath('views/partials'),
-    extname: '.hbs' 
+    extname: '.hbs',
+    helpers: hbsHelpers
 }));
 
 app.set('view engine', '.hbs');
-app.set('views', getPath('views'))
+app.set('views', getPath('views'));
 
-app.get('/', function(req, res) {
-    res.render('index', { title: 'HTML5 Shooter' });
-});
+require('./routes')(app, passport);
 
-// 404 handler
-app.use(function(req, res) {
-    res.status(404).sendFile(getPath('404.html'));
-});
+http.listen(config.get('http.port'));
 
-
-app.listen(config.get('http.port'));
+console.log('Server listening on port: ', config.get('http.port'));

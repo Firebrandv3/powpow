@@ -1,0 +1,41 @@
+.stats-screen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 5;
+}
+
+.stats-screen {
+    width: 500px;
+    margin: 60px auto 0;
+    padding: 15px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+.stats-screen-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    margin-bottom: -10px;
+
+    & > li {
+        margin-bottom: 10px;
+    }
+}
+
+.stats-screen-header {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+.stats-screen-header-score,
+.stats-screen-score {
+    float: right;
+}

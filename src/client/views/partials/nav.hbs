@@ -2,15 +2,15 @@
     <div id="navbar" class="navbar clearfix">
         <ul class="navbar-list">
             <li>
-                <a href="#">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    My Profile
+                <a href="/">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    Play
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    Community
+                <a href="/me">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Profile
                 </a>
             </li>
             <li>
@@ -19,15 +19,20 @@
                     About
                 </a>
             </li>
+            {{#if isLoggedIn }}
             <li class="pull-right">
-                <a href="#">
+                <a href="/logout">
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     Logout
                 </a>
             </li>
+            <li class="pull-right is-avatar">
+                <img class="navbar-avatar" src="{{ user.avatar }}">
+            </li>
+            {{/if}}
         </ul>
     </div>
     <div id="navbar-trigger" class="navbar-trigger">
-        <i class="fa fa-cog" aria-hidden="true"></i>
+        <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
 </div>

@@ -1,16 +1,27 @@
+<div id="game-ui" class="game-ui-container hidden">
+    <div class="game-ui-inventory">
+        <ul id="game-ui-health" class="game-ui-health"></ul>
+        <ul id="game-ui-ammo" class="game-ui-ammo"></ul>
+    </div>
+</div>
+<div id="game-ui-onhit-effect" class="game-ui-onhit-effect"></div>
 <div id="game-container" class="game-container"></div>
 
+<!-- Login -->
 <div id="login-backdrop" class="login-backdrop">
     <div class="login-backdrop-overlay"></div>
 </div>
 <div id="login" class="login-container">
     <h3 class="login-title">PowPow</h3>
+    <h4 class="type-reenter hidden">Awww, you got rekt. Play again!</h4>
     <div class="login-content">
         <input id="login-nickname" class="form-control" placeholder="Nickname" maxlength="15"/>
-        <button id="login-guest" class="btn btn-primary">Play as Guest</button>
+        <button id="login-guest" class="btn btn-primary">Play</button>
+        {{#unless isLoggedIn }}
         <div class="login-social">
             <h4>Or login for even more fun</h4>
             <div class="row">
+                {{!-- 
                 <div class="col-sm-4">
                     <button class="btn btn-large btn-facebook">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -22,14 +33,61 @@
                         <i class="fa fa-google-plus" aria-hidden="true"></i>
                         <span class="btn-text">Sign In</span>
                     </button>
+                </div> 
+                --}}
+                <div class="col-sm-12">
+                    <a href="/auth/twitter">
+                        <button class="btn btn-large btn-twitter">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <span class="btn-text">Sign In</span>
+                        </button>
+                    </a>
                 </div>
-                <div class="col-sm-4">
-                    <button class="btn btn-large btn-twitter">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                        <span class="btn-text">Sign In</span>
-                    </button>
+            </div>
+        </div>
+        {{/unless}}
+        <div class="login-control-info">
+            <h4 class="login-control-info-title">Controls:</h4>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>
+                        <strong class="login-control-btn">A</strong> Move left
+                    </div>
+                    <div>
+                        <strong class="login-control-btn">D</strong> Move right
+                    </div>
+                    <div>
+                        <strong class="login-control-btn">Tab</strong> Stats
+                    </div>
+                </div>
+                <div class="col-sm-6">      
+                    <div>
+                        <strong class="login-control-btn is-large">Mouse Left</strong> Shoot
+                    </div>
+                    <div>
+                        <strong class="login-control-btn is-large">Mouse Right</strong> Jetpack
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- game stats -->
+<div id="stats-screen" class="stats-screen-container hidden">
+    <div class="stats-screen">
+        <div class="stats-screen-header">
+            <span class="stats-screen-header-nick">Player</span>
+            <span class="stats-screen-header-score">Kills</span>
+        </div>
+        <ul id="stats-list" class="stats-screen-list"></ul>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        new App.Game.Initializer({
+            el: 'game-container'
+        });
+    });
+</script>

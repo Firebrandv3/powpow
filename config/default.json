@@ -2,5 +2,35 @@
     "http": {
         "port": 3000,
         "rootPath": "../../client"
+    },
+
+    "game": {
+        "width": 3000,
+        "mainLoopUpdateRate": 10,
+        "scoreMultiplier": 10
+    },
+
+    "Client": {
+        "maxAmmo": 5,
+        "maxHealth": 3
+    },
+
+    "db": {
+        "host": "users.multimediatechnology.at",
+        "database": "fhs38593_mmp1",
+        "user": "fhs38593",
+        "password": "CiK/Lk",
+        "forcedSync": true
+    },
+
+    "auth": {
+        "session": {
+            "secret": "Th15_1$_A_r4nD0m_5tRing!? 4nD iT 5h0uld b3 10ng.!"
+        },
+        "twitter": {
+            "consumerKey": "D0g7HgWmA11ZFwTAeHc3GlYD1",
+            "consumerSecret": "HeY7YpyIm3UY5mjZbMKfmOxDJSWfLJK05rjR6mV7j7O8rlDVGu",
+            "callbackURL": "http://127.0.0.1:3000/auth/twitter/callback"
+        }
     }
 }

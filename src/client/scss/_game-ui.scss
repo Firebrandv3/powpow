@@ -1,0 +1,64 @@
+.game-ui-container {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.game-ui-health,
+.game-ui-ammo {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & > li {
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position:  center center;
+        background-size: 100% auto;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        transition: filter .25s linear;
+
+        &.is-active {
+            -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+        }
+    }
+}
+
+.game-ui-health {
+    & > li {
+        width: 20px;
+        height: 25px;
+        margin-right: 10px;
+        background-image: url("../game-assets/sprites/health_large.png");
+    }
+}
+
+.game-ui-ammo {
+    & > li {
+        width: 16px;
+        height: 32px;
+        margin-right: 5px;
+        background-image: url("../game-assets/sprites/ammo_large.png");
+    }
+}
+
+.game-ui-onhit-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 5;
+    transition: opacity .1s linear;
+    pointer-events: none;
+    background: url("../game-assets/hit-gradient.png") repeat-x;
+
+    &.is-visible {
+        opacity: 1;
+    }
+}

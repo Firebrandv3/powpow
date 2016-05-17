@@ -1,3 +1,5 @@
+var configify = require('config-browserify');
+
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -32,7 +34,9 @@ module.exports = function(grunt) {
             options: {
                 browserifyOptions: {
                     debug: true
-                }
+                },
+                
+                transform: [configify]
             },
 
             build: {
@@ -77,6 +81,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', ['sass', 'jshint', 'browserify', 'uglify']);
-    grunt.registerTask('default', ['build', 'watch']);
+    grunt.registerTask('default', ['watch']);
 
 };

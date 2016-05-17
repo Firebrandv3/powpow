@@ -1,0 +1,57 @@
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-backdrop"></div>
+        <div class="user-profile-container container">
+            <div class="user-avatar" style="background-image: url('{{ user.avatar }}');"></div>
+            <h1 class="user-name">{{ user.name }}</h1>
+            <div class="user-score">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{ score }}
+            </div>
+        </div>  
+    </header>
+    <div class="page-content container">
+        <div class="user-last-games-container">
+            <h4 class="user-last-games-title">Recent Games</h4>
+            {{#if games.length}}
+            <div class="user-last-games-header">
+                <div class="row">
+                    <div class="col-xs-4">
+                        Played as
+                    </div>
+                    <div class="col-xs-4">
+                        Score
+                    </div>
+                    <div class="col-xs-4">
+                        Date
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            {{#unless games.length}}
+            <p class="text-center">Dude, you need to play more!</p>
+            {{/unless}}
+            <ul class="user-last-games">
+                {{#each games}}
+                <li>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="user-last-game-name">{{this.nick}}</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="user-last-game-score">
+                                {{this.score}} <span class="user-last-game-highlight">Kills
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="user-last-game-date">
+                                {{datefmt this.createdAt "DD/MM/YYYY"}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
