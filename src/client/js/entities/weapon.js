@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 'use strict';
 
 // later this entity should derive from an item entity

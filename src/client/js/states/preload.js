@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 'use strict';
 
 function Preload() {}
@@ -14,6 +20,8 @@ Preload.prototype.loadAssets = function() {
     this.load.image('healthPickup', 'game-assets/sprites/health.png', 24, 20);
     this.load.image('ammoPickup', 'game-assets/sprites/ammo.png', 13, 24);
     this.load.image('death', 'game-assets/sprites/death.png', 100, 100);
+    this.load.image('dickbutt', 'game-assets/sprites/dickbutt.png', 422, 424);
+    this.load.image('sun', 'game-assets/sprites/sun.png', 324, 324);
     this.load.spritesheet('character', 'game-assets/sprites/character.png', 100, 140, 6);
     this.load.spritesheet('projectile', 'game-assets/sprites/projectile.png', 43, 64, 6);
     this.load.spritesheet('jetpack', 'game-assets/sprites/jetpack_spritesheet.png', 40, 120, 3);

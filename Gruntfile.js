@@ -77,7 +77,7 @@ module.exports = function(grunt) {
                         '* Studiengang: MultimediaTechnology / FHS',
                         '* Zweck: Web (Basisqualifikationen)',
                         '* Autor: Erfan Ebrahimnia',
-                        '*/'
+                        '*/\n'
                     ].join('\n'),
                     linebreak: true
                 },
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                     ]
                 }
             }
-        }
+        },
 
         watch: {
             sass: {

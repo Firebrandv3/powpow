@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 'use strict';
 
 function AmmoPickup(game, x, y, id) {

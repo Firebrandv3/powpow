@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 'use strict';
 
 function HealthPickup(game, x, y, id) {

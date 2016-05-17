@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 var socketio = require('socket.io');
 var GameManager = require('./game-manager').getInstance();
 var UpdateManager = require('./update-manager').getInstance();

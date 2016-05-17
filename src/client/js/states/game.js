@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 'use strict';
 
 var _ = require('underscore');
@@ -23,6 +29,8 @@ Game.prototype.create = function() {
 
     this.initWorld();
     this.initPhysics();
+
+    this.addDecoSprites();
 
     this.enemies = new Enemies(this.game, this.enemiesData);
     this.pickups = new Pickups(this.game, this.pickupsData);
@@ -82,6 +90,11 @@ Game.prototype.initWorld = function() {
     this.gridTileSprite.fixedToCamera = true;
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.game.world.setBounds(0, 0, App.Game.WIDTH, App.Game.HEIGHT);
+};
+
+Game.prototype.addDecoSprites = function() {
+    this.game.add.sprite(this.game.world.width / 2, this.game.world.height / 2, 'dickbutt');
+    this.game.add.sprite(this.game.world.width - 500, 100, 'sun').alpha = .5;
 };
 
 Game.prototype.initPhysics = function() {

@@ -1,3 +1,9 @@
+/**
+* Studiengang: MultimediaTechnology / FHS
+* Zweck: Web (Basisqualifikationen)
+* Autor: Erfan Ebrahimnia
+*/
+
 var Client = require('./client');
 var Clients = require('./clients');
 var UpdateManager = require('../update-manager');
