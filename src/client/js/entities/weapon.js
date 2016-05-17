@@ -9,7 +9,7 @@
 // later this entity should derive from an item entity
 // and offer a base for other weapons
 function Weapon(game, x, y) {
-    Phaser.Sprite.call(this, game, x, y, 'weapon', 0);
+    Phaser.Sprite.call(this, game, x, y, 'pewpew', 0);
 
     this.projectilesGrp = null;
 }

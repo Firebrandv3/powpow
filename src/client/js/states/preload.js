@@ -16,7 +16,7 @@ Preload.prototype.preload = function() {
 Preload.prototype.loadAssets = function() {
     // images
     this.load.image('grid', '/game-assets/grid.jpg');
-    this.load.image('weapon', '/game-assets/sprites/weapon.png', 64, 56);
+    this.load.image('pewpew', '/game-assets/sprites/pewpew.png', 64, 56);
     this.load.image('healthPickup', '/game-assets/sprites/health.png', 24, 20);
     this.load.image('ammoPickup', '/game-assets/sprites/ammo.png', 13, 24);
     this.load.image('death', '/game-assets/sprites/death.png', 100, 100);

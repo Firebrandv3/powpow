@@ -261,7 +261,6 @@ Game.prototype = {
         if (current >= max) return false;
         
         if (current !== void 0) {
-            current++;
             $icons.eq(current).addClass('is-active');
         } else {
             // add to all (reset)

@@ -115,8 +115,8 @@ Game.prototype.update = function() {
 };
 
 Game.prototype.render = function() {
-    this.game.debug.cameraInfo(this.game.camera, 32, 32);
-    this.game.debug.text('fps: '+ this.game.time.fps || '--', 32, 140);
+    // this.game.debug.cameraInfo(this.game.camera, 32, 32);
+    // this.game.debug.text('fps: '+ this.game.time.fps || '--', 32, 140);
 };
 
 module.exports = Game;
