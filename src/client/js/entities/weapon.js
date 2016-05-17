@@ -16,7 +16,7 @@ Weapon.prototype.useProjectiles = function(projectilesGrp) {
 };
 
 Weapon.prototype.shoot = function(angle, shooter) {
-    this.projectilesGrp.fire(this.world, angle, this.width * 1.5, shooter);
+    this.projectilesGrp.fire(this.world, angle, this.width * 1.7, shooter);
 };
 
 module.exports = Weapon;

@@ -252,36 +252,28 @@ Game.prototype = {
     },
 
     increase: function($icons, current, max) {
-        var i = 0;
-        var $icon;
-
         if (current >= max) return false;
-
-        current++;
-
-        while (i < current) {
-            $icon = $($icons[i]);
-            $icon.addClass('is-active');
-
-            i++;
+        
+        if (current !== void 0) {
+            current++;
+            $icons.eq(current).addClass('is-active');
+        } else {
+            // add to all (reset)
+            $icons.addClass('is-active');
         }
 
         return true;
     },
 
     decrease: function($icons, current, max) {
-        var i = max;
-        var $icon;
-
         if (current <= 0) return false;
 
-        current--;
-
-        while (i >= current) {
-            $icon = $($icons[i]);
-            $icon.removeClass('is-active');
-            
-            i--;
+        if (current !== void 0) {
+            current--;
+            $icons.eq(current).removeClass('is-active');
+        } else {
+            // add to all (reset)
+            $icons.removeClass('is-active');
         }
 
         return true;
@@ -298,8 +290,8 @@ Game.prototype = {
     reset: function() {
         this.health = this.options.maxHealth;
         this.ammo = this.options.maxAmmo;
-        this.increase(this.$healthIcons, this.options.maxHealth - 1, this.options.maxHealth);
-        this.increase(this.$ammoIcons, this.options.maxAmmo - 1, this.options.maxAmmo);
+        this.increase(this.$healthIcons);
+        this.increase(this.$ammoIcons);
     },
 
     show: function() {
