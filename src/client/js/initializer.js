@@ -31,6 +31,7 @@ function Initializer(options) {
             App.UI.Login.close();
             that.game.state.start('boot');
             App.UI.Navbar.hide();
+            App.UI.StatsScreen.show();
         }
     });
 

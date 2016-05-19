@@ -53,6 +53,7 @@ Player.prototype.createCharacter = function() {
         this.game,
         this.x,
         this.y,
+        true,
         this.id,
         this.nick
     );
@@ -80,6 +81,8 @@ Player.prototype.mouseClickHandler = function(event) {
         App.UI.Game.decreaseAmmo();
         this.character.callAction('shoot', this.aimDirection);
         App.socket.emit('client.action.shoot', { aimDirection: this.aimDirection });
+    } else if (this.ammo <= 0) {
+        this.game.sound.play('no-ammo');
     }
 };
 

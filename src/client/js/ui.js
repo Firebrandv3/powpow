@@ -132,29 +132,9 @@ function StatsScreen(options) {
                     '<span class="stats-screen-nick"><%= nick || \'Anon\' %></span>' +
                     '<span class="stats-screen-score"><%= killedCount %></span>' +
                 '</li>';
-
-    this.bindDOMEvents();
 }
 
 StatsScreen.prototype = {
-    bindDOMEvents: function() {
-        $(document).on('keydown', function(event) {
-            // pressing tab tab
-            if (!this.isDisabled && event.which === this.TAB_KEY) {
-                event.preventDefault();
-                this.show();
-            }
-        }.bind(this));
-
-        $(document).on('keyup', function(event) {
-            // pressing tab tab
-            if (!this.isDisabled && event.which === this.TAB_KEY) {
-                event.preventDefault();
-                this.hide();
-            }
-        }.bind(this));
-    },
-
     update: function(clients) {
         if (this.isVisible) {
             this.renderList(clients);

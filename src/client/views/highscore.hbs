@@ -1,0 +1,39 @@
+<div class="page-container no-header">
+    <div class="page-content container">
+        <div class="user-last-games-container">
+            <h4 class="user-data-list-title">Highscore Top 100</h4>
+            <ul class="user-data-list">
+                {{#each users}}
+                <li>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="user-data-list-column">
+                                <div class="user-data-list-col-content user-data-list-counter">
+                                    {{counter @index}}
+                                </div>
+                                <a href="/u/{{this.id}}">
+                                    <img class="user-data-list-thumb" src="{{this.avatar}}"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="user-data-list-column">
+                                <div class="user-data-list-col-content">
+                                    <a href="/u/{{this.id}}">{{this.name}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="user-data-list-column">
+                                <div class="user-data-list-col-content">
+                                    {{this.score}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

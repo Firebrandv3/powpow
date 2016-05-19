@@ -67,15 +67,17 @@ Code is licensed under ISC. Content is licensed under CC-BY-SA 3.0. See the LICE
  [x] Make logged in players be able to get trophies and save the current trophy into the database
  [x] Create a user page
 
- [] Upload the game on heroku and test it
- [] If there are any huge problems fix them and make the game playable 
- [] Create the about page
+ [x] Upload the game on heroku and test it
+ [x] If there are any huge problems fix them and make the game playable 
  [x] Fix revive inventory bug
+ [x] Create a profile page for every user
+ [] Add Background
 
- [] Add soundfx for walking, jetpack, shooting, explosion, item pickup, no ammo
+ [x] Add soundfx for walking, jetpack, shooting, explosion, item pickup, no ammo
  [x] Add controls guide to login dialog
- [] Add dickbutt skin, trollface skin, nyancat
+ [] Add trollface skin, nyancat
  [] Refactor socket connection and handle position interpolation
  [] Fix reenter bug (wrong position)
- [] Put pickup server code into own file
+ [] Refactoring: Put pickup server code into own file
+ [] Refactoring: create a soundservice (pool)
  

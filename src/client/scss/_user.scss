@@ -55,21 +55,21 @@
     }
 }
 
-.user-last-games-title {
+.user-data-list-title {
     text-align: center;
     margin-top: 25px;
     margin-bottom: 25px;
     font-size: 20px;
 }
 
-.user-last-games-header {
+.user-data-list-header {
     text-align: center;
     font-weight: bold;
     margin-bottom: 15px;
     margin-top: 10px;
 }
 
-.user-last-games {
+.user-data-list {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -85,7 +85,29 @@
     }
 }
 
-.user-last-game-highlight {
+.user-data-list-counter {
+    float: left;
+    padding: 0 10px;
+    left: 5px;
+    font-weight: bold;
+}
+
+.user-data-list-col-content {
+    position: relative;
+    top: 15px;
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+.user-data-list-thumb {
+    width: 48px;
+    border-radius: 50%;
+}
+
+.user-data-list-highlight {
     color: orange;
     font-weight: bold;
 }

@@ -17,7 +17,9 @@ module.exports = function(sequelize, DataTypes) {
 
         twitterAccessToken: DataTypes.STRING,
 
-        avatar: DataTypes.STRING
+        avatar: DataTypes.STRING,
+
+        score: DataTypes.INTEGER
 
     }, {
         classMethods: {

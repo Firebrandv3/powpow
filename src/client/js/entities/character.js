@@ -6,26 +6,33 @@
 
 'use strict';
 
+var _ = require('underscore');
 var Weapon = require('./weapon');
 var JetPack = require('./jetpack');
 var ProjectilesManager = require('./projectiles');
 
 var MOVEMENT_VELOCITY = 100;
-var FLY_VELOCITY = -100;
-var RECOIL_POWER = 400;
+var FLY_VELOCITY = -200;
+var RECOIL_POWER = 600;
 var MOVEMENT_DRAG = 500;
 var RECOIL_EFFECT_DURATION = 800;
 var JET_PACK_OFFSET_X = 20;
 var JET_PACK_OFFSET_Y = 25;
 
+var skins = {
+    'troll': 'troll-skin'
+};
+
 // view representation of the character without any businesscode
 // Controlled by another entity
-function Character(game, x, y, id, nick) {
-    Phaser.Sprite.call(this, game, x, y, 'character', 0);
+function Character(game, x, y, isPlayer, id, nick) {
+    Phaser.Sprite.call(this, game, x, y, skins[nick] || 'character', 0);
 
     this.id = id;
 
     this.nick = nick;
+
+    this.isPlayer = isPlayer;
 
     this.isAimingLeft = false;
 
@@ -38,6 +45,11 @@ function Character(game, x, y, id, nick) {
     this.jetPack = null;
 
     this.label = null;
+
+    // put this stuff into a sound service class
+    this.walkSound = _.throttle(function() {
+        this.game.sound.play('walk');
+    }.bind(this), 300);
 
     this.addAnimations();
 }
@@ -139,15 +151,27 @@ Character.prototype.die = function() {
     .onComplete.add(function() {
         this.destroy();
     }.bind(this));
+
+    this.game.sound.play('death');
 };
 
 Character.prototype.actionsMapping = {
     moveLeft: function() {
         if (this.inRecoilAnimation) return;
 
-        this.body.velocity.x = -MOVEMENT_VELOCITY;
+        if (!this.body.onFloor()) {
+            this.body.velocity.x = -MOVEMENT_VELOCITY * 2;
+            
+            if (this.body.velocity.y < 0) {
+                this.body.velocity.y /= 5;
+            }
 
-        if (!this.body.onFloor()) return;
+            return;
+        } else {
+            this.body.velocity.x = -MOVEMENT_VELOCITY;
+        }
+
+        this.walkSound();
 
         if (!this.isAimingLeft) {
             this.movingAnimation = this.animations.play('rightBackward');
@@ -159,9 +183,19 @@ Character.prototype.actionsMapping = {
     moveRight: function() {
         if (this.inRecoilAnimation) return;
 
-        this.body.velocity.x = MOVEMENT_VELOCITY;
+        if (!this.body.onFloor()) {
+            this.body.velocity.x = MOVEMENT_VELOCITY * 2;
+            
+            if (this.body.velocity.y < 0) {
+                this.body.velocity.y /= 5;
+            }
 
-        if (!this.body.onFloor()) return;
+            return;
+        } else {
+            this.body.velocity.x = MOVEMENT_VELOCITY;
+        }
+        
+        this.walkSound();
         
         if (this.isAimingLeft) {
             this.movingAnimation = this.animations.play('leftBackward');
@@ -192,6 +226,8 @@ Character.prototype.actionsMapping = {
             this.recoilJumpCount++;
             this.shotRecoil(angle);
         }
+
+        this.game.sound.play('shoot');
     }
 };
 

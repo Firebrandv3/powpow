@@ -14,11 +14,13 @@
 }
 
 .stats-screen {
-    width: 500px;
-    margin: 60px auto 0;
-    padding: 15px;
+    width: 150px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
     color: #fff;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
     background-color: rgba(0, 0, 0, .5);
     pointer-events: none;
@@ -29,15 +31,15 @@
     padding: 0;
     list-style: none;
     overflow: hidden;
-    margin-bottom: -10px;
+    margin-bottom: -5px;
 
     & > li {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 }
 
 .stats-screen-header {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border-bottom: 1px solid #fff;
 }
 

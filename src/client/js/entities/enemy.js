@@ -64,6 +64,7 @@ Enemy.prototype.createCharacter = function() {
         this.game,
         this.x,
         this.y,
+        false,
         this.id,
         this.nick
     );

@@ -5,7 +5,12 @@
 */
 
 .page-container {
-    width: 100%
+    width: 100%;
+    margin-bottom: 50px;
+
+    &.no-header {
+        padding-top: 50px; 
+    }
 }
 
 .page-header {

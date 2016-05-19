@@ -25,6 +25,15 @@ Preload.prototype.loadAssets = function() {
     this.load.spritesheet('character', '/game-assets/sprites/character.png', 100, 140, 6);
     this.load.spritesheet('projectile', '/game-assets/sprites/projectile.png', 43, 64, 6);
     this.load.spritesheet('jetpack', '/game-assets/sprites/jetpack_spritesheet.png', 40, 120, 3);
+
+    // audio
+    this.load.audio('boom', '/game-assets/sounds/boom.wav');
+    this.load.audio('death', '/game-assets/sounds/death.mp3');
+    this.load.audio('jetpack', '/game-assets/sounds/jetpack.wav');
+    this.load.audio('no-ammo', '/game-assets/sounds/no-ammo.wav');
+    this.load.audio('pickup', '/game-assets/sounds/pickup.wav');
+    this.load.audio('shoot', '/game-assets/sounds/shoot.wav');
+    this.load.audio('walk', '/game-assets/sounds/walk.wav');
 };
 
 Preload.prototype.onLoadCompleteHandler = function() {

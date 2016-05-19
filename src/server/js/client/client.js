@@ -22,6 +22,8 @@ function Client(data) {
     this.userId = data.userId;
 
     this.user = null;
+
+    this.userScore = 0;
     
     this.nick = this.prepareNick(data.nick);
 
@@ -55,6 +57,7 @@ Client.prototype.toJSON = function() {
 Client.prototype.loadUserData = function() {
     orm.models.User.findById(this.userId).then(function(user) {
         this.user = user;
+        this.userScore = this.user.score;
     }.bind(this));
 };
 
@@ -86,8 +89,6 @@ Client.prototype.bindSocketEvents = function() {
     }.bind(this));
 
     this.socket.on('client.action.pickup', this.pickupHandler.bind(this));
-
-
     this.socket.on('client.me.reenter', this.reEnterHandler.bind(this));
 };
 
@@ -137,11 +138,16 @@ Client.prototype.deathHandler = function() {
     // not logged in
     if (!this.user) return;
 
-    orm.models.Game.create({
+    this.user.addGame({
         score: this.killedCount,
         nick: this.nick
-    }).then(function(game) {
-        this.user.addGame(game);
+    })
+    .then(function() {
+        this.userScore += this.killedCount * config.get('game.scoreMultiplier')
+
+        this.user.update({
+            score: this.userScore
+        });
     }.bind(this));
 };
 

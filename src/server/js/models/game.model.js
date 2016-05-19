@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                // Game.belongsTo(models.User);
+                Game.belongsTo(models.User);
             }
         }
     });

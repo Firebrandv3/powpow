@@ -10,6 +10,12 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 // load up the user model
 var orm = require('sequelize-connect');
 
+function prepareAvatar(avatar) {
+    if (avatar) {
+        avatar = avatar.replace('_normal', '_bigger');
+    }
+    return avatar;
+}
 
 module.exports = function(passport) {
     // used to serialize the user for the session
@@ -44,7 +50,7 @@ module.exports = function(passport) {
                     name: profile.displayName,
                     twitterId: profile.id,
                     twitterAccessToken: token,
-                    avatar: profile.photos[0].value
+                    avatar: prepareAvatar(profile.photos[0].value)
                 }
             })
             .spread(function(user) {

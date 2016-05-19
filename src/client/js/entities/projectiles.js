@@ -39,7 +39,12 @@ ProjectilesManager.prototype.fire = function(source, angle, offsetOrigin, shoote
 
 ProjectilesManager.prototype.onHit = function(character, projectile) {
     character.onHit(projectile.shooter);
+
     projectile.explode();
+
+    if (!projectile.alreadyDead) {
+        this.game.sound.play('boom');
+    }
 };
 
 // Projectile Entity
@@ -51,6 +56,7 @@ function Projectile(game) {
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
     this.exists = false;
+    this.alreadyDead = false;
 
     this.explosionAnimation = null;
 
@@ -85,6 +91,7 @@ Projectile.prototype.startLifeSpan = function() {
 };
 
 Projectile.prototype.explode = function() {
+    this.alreadyDead = true;
     this.body.enable = false;
 
     this.body.velocity.set(0);

@@ -11,7 +11,7 @@
     },
 
     "Client": {
-        "maxAmmo": 5,
+        "maxAmmo": 6,
         "maxHealth": 3
     },
 

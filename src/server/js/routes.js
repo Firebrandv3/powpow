@@ -17,6 +17,22 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
+function modelsToJSON(models) {
+    return models.map(function(model){ 
+        return model.toJSON();
+    });
+}
+
+function getUserPageData(user, games) {
+    var preparedGames = modelsToJSON(games);
+
+    return {
+        title: user.name,
+        user: user,
+        games: preparedGames
+    };
+}
+
 module.exports = function(app, passport) {
     app.use(function(req, res, next) {
         res.locals.isLoggedIn = req.isAuthenticated();
@@ -38,7 +54,7 @@ module.exports = function(app, passport) {
         if (req.isAuthenticated()) {
             res.redirect('/me');
         } else {
-            res.render('login.hbs');
+            res.render('login.hbs', { title: 'Login' });
         }
     });
 
@@ -49,38 +65,41 @@ module.exports = function(app, passport) {
 
     app.get('/me', isLoggedIn, function(req, res) {
         orm.models.User.findById(req.user.id).then(function(user) {
-            user.getGames().then(function(games) {
-                var games = games.map(function(game){ 
-                    return game.toJSON() 
-                });
-
-                var goodGames = _.filter(games, function(game) { 
-                    return game.score > 0 
-                });
-
-                res.render('user.hbs', {
-                    title: req.user.name,
-                    user: req.user,
-                    games: games,
-                    score: config.get('game.scoreMultiplier') * goodGames.length
-                });
+            user.getGames({ 
+                limit: 10,
+                order: [['createdAt', 'DESC']]
+            }).then(function(games) {
+                res.render('user.hbs', getUserPageData(user, games));
             });
         });
     });
 
-    // app.get('/u/:id', isLoggedIn, function(req, res, next) {
-    //     User.find({ where: { id: req.params.id } }).then(function(error, user) {
-    //         if (!user) {
-    //             next();
-    //         }
+    app.get('/u/:id', function(req, res, next) {
+        orm.models.User.findById(req.params.id).then(function(user) {
+            if (!user) {
+                res.redirect('/not-found');
+            }
 
-    //         res.render('user.hbs', {
-    //             user : req.user // get the user out of session and pass to template
-    //         });
+            user.getGames({ 
+                limit: 10,
+                order: [['createdAt', 'DESC']]
+            }).then(function(games) {
+                res.render('user.hbs', getUserPageData(user, games));
+            });
+        });
+    });
 
-    //         next();
-    //     });
-    // });
+    app.get('/highscore', function(req, res, next) {
+        orm.models.User.findAll({
+            limit: 100,
+            order: [['score', 'DESC']],
+        }).then(function(users) {
+            res.render('highscore.hbs', {
+                title: 'Highscore',
+                users: modelsToJSON(users)
+            });
+        });
+    });
 
     // route for twitter authentication and login
     app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -90,6 +109,10 @@ module.exports = function(app, passport) {
         successRedirect : '/me',
         failureRedirect : '/'
     }));
+
+    app.get('/not-found', function(req, res) {
+        res.render('404.hbs', { title: '404 Not found!' });
+    });
 
     // 404 handler
     app.use(function(req, res) {

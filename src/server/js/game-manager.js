@@ -11,9 +11,9 @@ var UpdateManager = require('./update-manager');
 var instance;
 var ASPECT_RATIO = 4 / 3;
 var SPAWN_BORDER = 100;
-var PICKUP_SECTIONS = 10;
-var PICKUP_ENABLE_INTERVAL = 5000;
-var MAX_ENABLED_PICKUPS = 50;
+var PICKUP_SECTIONS = 20;
+var PICKUP_ENABLE_INTERVAL = 500;
+var MAX_ENABLED_PICKUPS = 150;
 
 var HealthPickup = { 
     type: 'health', 

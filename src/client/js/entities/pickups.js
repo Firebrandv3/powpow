@@ -81,6 +81,10 @@ Pickups.prototype.onPick = function(character, pickup) {
 
     pickup.body.enable = false;
 
+    if (character.isPlayer) {
+        this.game.sound.play('pickup');
+    }
+
     tween = this.game.add.tween(pickup).to({ 
         x: character.x, 
         y: character.y 
